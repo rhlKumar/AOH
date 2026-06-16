@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Academic Help — Doctoral Research Consultancy</title>
+<meta name="description" content="Online Academic Help is an India-based academic consultancy supporting scholars through every stage of the doctoral research journey — from proposal to defence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13243d;
+    --ink-soft:#2c3e5c;
+    --parchment:#f4efe4;
+    --parchment-deep:#e8dfc9;
+    --brass:#b07d3c;
+    --brass-light:#caa15f;
+    --cream:#fbf8f1;
+    --line:#d8cdb4;
+    --muted:#5c6677;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  h1,h2,h3,.display{font-family:'Fraunces',serif}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,248,241,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:var(--ink);text-decoration:none;letter-spacing:.2px}
+  .brand .seal{width:34px;height:34px;flex:none}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{color:var(--ink-soft);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--brass)}
+  .nav-cta{background:var(--ink);color:var(--cream)!important;padding:10px 20px;border-radius:2px;font-weight:600!important}
+  .nav-cta:hover{background:var(--brass);color:var(--cream)!important}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;color:var(--ink)}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;background:var(--ink);color:var(--parchment)}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(900px 500px at 78% -10%, rgba(176,125,60,.28), transparent 60%),
+      repeating-linear-gradient(0deg, transparent 0 38px, rgba(244,239,228,.03) 38px 39px);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;padding:96px 0 104px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-light);font-weight:600;margin-bottom:24px}
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--brass-light)}
+  .hero h1{font-size:clamp(38px,5.4vw,62px);line-height:1.04;font-weight:600;letter-spacing:-.5px}
+  .hero h1 em{font-style:italic;color:var(--brass-light)}
+  .hero p.lede{margin-top:24px;font-size:18px;color:#cdd5e0;max-width:30em;line-height:1.7}
+  .hero-actions{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:14px 26px;border-radius:2px;font-weight:600;font-size:15px;text-decoration:none;transition:all .2s;cursor:pointer;border:0}
+  .btn-primary{background:var(--brass);color:#1a1206}
+  .btn-primary:hover{background:var(--brass-light)}
+  .btn-ghost{background:transparent;color:var(--parchment);border:1px solid rgba(244,239,228,.4)}
+  .btn-ghost:hover{border-color:var(--brass-light);color:var(--brass-light)}
+
+  /* hero seal panel */
+  .crest{position:relative;background:rgba(244,239,228,.04);border:1px solid rgba(244,239,228,.16);border-radius:4px;padding:34px 32px}
+  .crest h3{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-light);font-weight:600;margin-bottom:22px}
+  .crest .stat{display:flex;justify-content:space-between;align-items:baseline;padding:15px 0;border-bottom:1px solid rgba(244,239,228,.12)}
+  .crest .stat:last-child{border-bottom:0}
+  .crest .num{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:var(--parchment)}
+  .crest .lbl{font-size:13.5px;color:#aeb8c6;text-align:right;max-width:14em}
+
+  /* SECTION shells */
+  section{padding:88px 0;scroll-margin-top:80px}
+  .sec-head{max-width:42em;margin-bottom:52px}
+  .sec-eyebrow{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);font-weight:600;margin-bottom:16px;display:block}
+  .sec-head h2{font-size:clamp(28px,3.8vw,40px);line-height:1.12;font-weight:600;letter-spacing:-.4px}
+  .sec-head p{margin-top:18px;color:var(--muted);font-size:17px}
+
+  /* JOURNEY — the signature timeline */
+  .journey{background:var(--parchment);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .milestones{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .ms{background:var(--cream);padding:34px 32px;position:relative}
+  .ms .stage{font-family:'Fraunces',serif;font-size:13px;font-weight:600;color:var(--brass);letter-spacing:.1em}
+  .ms h3{font-size:21px;font-weight:600;margin:10px 0 12px;letter-spacing:-.2px}
+  .ms p{color:var(--muted);font-size:15px}
+  .ms .rule{width:38px;height:2px;background:var(--brass);margin-top:18px}
+
+  /* SERVICES grid */
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:4px;padding:30px 28px;transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px -20px rgba(19,36,61,.45)}
+  .card .ic{width:40px;height:40px;color:var(--brass);margin-bottom:18px}
+  .card h3{font-size:19px;font-weight:600;margin-bottom:10px;letter-spacing:-.2px}
+  .card p{color:var(--muted);font-size:15px}
+
+  /* APPROACH split */
+  .approach{background:var(--ink);color:var(--parchment)}
+  .approach .sec-eyebrow{color:var(--brass-light)}
+  .approach .sec-head h2{color:var(--parchment)}
+  .split{display:grid;grid-template-columns:repeat(2,1fr);gap:48px;align-items:start}
+  .pledge{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid rgba(244,239,228,.13)}
+  .pledge:last-child{border-bottom:0}
+  .pledge .n{font-family:'Fraunces',serif;font-size:22px;color:var(--brass-light);font-weight:600;flex:none;width:36px}
+  .pledge h4{font-size:18px;font-weight:600;margin-bottom:6px;font-family:'Fraunces',serif}
+  .pledge p{color:#c2cad6;font-size:15px}
+
+  /* ETHICS note */
+  .ethics{background:rgba(244,239,228,.05);border:1px solid rgba(244,239,228,.18);border-left:3px solid var(--brass);border-radius:4px;padding:26px 28px}
+  .ethics h4{font-family:'Fraunces',serif;font-size:18px;margin-bottom:10px;color:var(--parchment)}
+  .ethics p{color:#c2cad6;font-size:14.5px}
+
+  /* CONTACT */
+  .contact{background:var(--parchment);border-top:1px solid var(--line)}
+  .contact-card{background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:52px 48px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .contact-card h2{font-size:clamp(26px,3.4vw,34px);line-height:1.12;font-weight:600;letter-spacing:-.3px}
+  .contact-card p{color:var(--muted);margin-top:14px;font-size:16px}
+  .contact-details{display:flex;flex-direction:column;gap:16px}
+  .contact-line{display:flex;align-items:center;gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:4px;text-decoration:none;color:var(--ink);background:var(--cream);transition:border-color .2s,transform .2s}
+  .contact-line:hover{border-color:var(--brass);transform:translateY(-2px)}
+  .contact-line svg{width:24px;height:24px;color:var(--brass);flex:none}
+  .contact-line span{display:flex;flex-direction:column;font-size:16px;font-weight:600;word-break:break-word}
+  .contact-line .cd-label{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:3px}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#aeb8c6;padding:56px 0 32px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(244,239,228,.12)}
+  footer .brand{color:var(--parchment)}
+  footer h5{color:var(--parchment);font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;font-weight:600}
+  footer a{color:#aeb8c6;text-decoration:none;display:block;margin-bottom:10px;font-size:14.5px;transition:color .2s}
+  footer a:hover{color:var(--brass-light)}
+  footer .tagline{margin-top:16px;font-size:14.5px;color:#8d97a6;max-width:26em;line-height:1.7}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:24px;font-size:13.5px;color:#7e8896}
+  .foot-bottom a{display:inline;margin:0}
+
+  @media(max-width:900px){
+    .hero-inner,.split,.contact-card,.svc-grid,.milestones,.foot-grid{grid-template-columns:1fr}
+    .svc-grid{gap:20px}
+    .nav-links{display:none}
+    .menu-btn{display:block}
+    section{padding:64px 0}
+    .hero-inner{padding:64px 0 72px;gap:40px}
+    .contact-card{padding:36px 28px}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <svg class="seal" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" stroke="#b07d3c" stroke-width="1.5"/>
+        <path d="M20 9L31 14.5L20 20L9 14.5L20 9Z" fill="#13243d" stroke="#b07d3c" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M13 17.5V24C13 24 16 27 20 27C24 27 27 24 27 24V17.5" stroke="#b07d3c" stroke-width="1.4"/>
+        <line x1="31" y1="14.5" x2="31" y2="22" stroke="#b07d3c" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      Online Academic Help
+    </a>
+    <nav class="nav-links">
+      <a href="#journey">The Journey</a>
+      <a href="#services">Services</a>
+      <a href="#approach">Our Approach</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="menu-btn" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display==='flex'?'none':'flex'" aria-label="Menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">India-based doctoral consultancy</span>
+      <h1>Your doctoral road is long.<br>You don't have to walk it <em>alone.</em></h1>
+      <p class="lede">Online Academic Help guides research scholars through every milestone of the doctoral journey — from a sharp proposal to a confident defence — with mentoring that respects your authorship and your timeline.</p>
+    </div>
+    <aside class="crest">
+      <h3>What scholars come to us for</h3>
+      <div class="stat"><span class="num">01</span><span class="lbl">Clarifying a fuzzy research question</span></div>
+      <div class="stat"><span class="num">02</span><span class="lbl">Building a defensible methodology</span></div>
+      <div class="stat"><span class="num">03</span><span class="lbl">Untangling analysis that stalled</span></div>
+      <div class="stat"><span class="num">04</span><span class="lbl">Preparing to face the viva committee</span></div>
+    </aside>
+  </div>
+</section>
+
+<!-- JOURNEY (signature timeline) -->
+<section class="journey" id="journey">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">The doctoral journey</span>
+      <h2>Five stages. One guide who stays with you through all of them.</h2>
+      <p>Most students don't get stuck because they aren't capable — they get stuck because no one shows them what good looks like at each stage. Here's where we walk alongside you.</p>
+    </div>
+    <div class="milestones">
+      <div class="ms">
+        <span class="stage">Stage I — Foundation</span>
+        <h3>Proposal &amp; research design</h3>
+        <p>Shaping a researchable question, framing the gap in the literature, and structuring a proposal your committee will approve.</p>
+        <div class="rule"></div>
+      </div>
+      <div class="ms">
+        <span class="stage">Stage II — Grounding</span>
+        <h3>Literature review</h3>
+        <p>Mapping the field, organising sources thematically, and building a review that argues rather than merely lists.</p>
+        <div class="rule"></div>
+      </div>
+      <div class="ms">
+        <span class="stage">Stage III — Method</span>
+        <h3>Methodology &amp; data</h3>
+        <p>Choosing the right method, designing instruments, and collecting data you can defend on rigour and ethics.</p>
+        <div class="rule"></div>
+      </div>
+      <div class="ms">
+        <span class="stage">Stage IV — Insight</span>
+        <h3>Analysis &amp; interpretation</h3>
+        <p>Working through quantitative or qualitative analysis and turning results into findings that mean something.</p>
+        <div class="rule"></div>
+      </div>
+      <div class="ms">
+        <span class="stage">Stage V — Completion</span>
+        <h3>Writing, editing &amp; viva</h3>
+        <p>Drafting and polishing chapters, formatting to university norms, and rehearsing for the defence with mock vivas.</p>
+        <div class="rule"></div>
+      </div>
+      <div class="ms" style="background:var(--parchment-deep);display:flex;flex-direction:column;justify-content:center">
+        <h3 style="color:var(--ink)">Not sure where you are?</h3>
+        <p style="color:var(--ink-soft)">Tell us your stage and we'll map the rest. Reach out using the contact details below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">How we support you</span>
+      <h2>Mentoring and editorial services, tailored to your project.</h2>
+      <p>Every engagement is scoped to what you actually need. Pick one service or combine several into a plan that fits your timeline and budget.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5L12 21l9-4.5"/></svg>
+        <h3>Topic &amp; proposal guidance</h3>
+        <p>One-to-one mentoring to refine your research question, scope, and proposal until it's ready for committee approval.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <h3>Literature review support</h3>
+        <p>Help sourcing, synthesising, and structuring your review so it builds a clear argument for your study.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 16l4-5 3 3 5-7"/></svg>
+        <h3>Methodology &amp; analysis</h3>
+        <p>Guidance on research design and hands-on support with statistical or qualitative analysis tools and interpretation.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+        <h3>Editing &amp; proofreading</h3>
+        <p>Language editing, formatting to university guidelines, and reference management — without altering your ideas.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        <h3>Plagiarism &amp; quality checks</h3>
+        <p>Similarity checks and originality reviews to help you meet your institution's integrity standards with confidence.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <h3>Viva &amp; defence prep</h3>
+        <p>Mock viva sessions, anticipated questions, and presentation coaching so you walk into your defence prepared.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Our approach</span>
+      <h2>We mentor. You author. That line never moves.</h2>
+    </div>
+    <div class="split">
+      <div>
+        <div class="pledge"><span class="n">i.</span><div><h4>Your work stays yours</h4><p>We guide, advise, and edit for clarity. The research, the arguments, and the authorship remain entirely your own.</p></div></div>
+        <div class="pledge"><span class="n">ii.</span><div><h4>Experienced mentors</h4><p>You're matched with consultants who understand your discipline and the expectations of doctoral examiners.</p></div></div>
+      </div>
+      <div>
+        <div class="pledge"><span class="n">iii.</span><div><h4>Clear scope, clear pricing</h4><p>Every engagement begins with a written scope and quote. No surprises, no open-ended bills.</p></div></div>
+        <div class="pledge"><span class="n">iv.</span><div><h4>Confidential by default</h4><p>Your topic, drafts, and data are handled in confidence and never shared or reused.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <div>
+        <h2>Tell us where you are in your research.</h2>
+        <p>Get in touch with a few details about your project and current stage. We'll get back to you with how we can help, along with a quote and the full details of our services.</p>
+      </div>
+      <div class="contact-details">
+        <a class="contact-line" href="mailto:aacdemicprojects.help@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+          <span><span class="cd-label">Email</span>aacdemicprojects.help@gmail.com</span>
+        </a>
+        <a class="contact-line" href="tel:+918527878265">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span><span class="cd-label">Phone &amp; WhatsApp</span>+91 85278 78265</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="brand" style="font-size:18px">Online Academic Help</span>
+        <p class="tagline">An India-based academic consultancy supporting doctoral scholars worldwide through every stage of the research journey.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="#journey">The Journey</a>
+        <a href="#services">Services</a>
+        <a href="#approach">Our Approach</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <a href="mailto:aacdemicprojects.help@gmail.com">aacdemicprojects.help@gmail.com</a>
+        <a href="tel:+918527878265">+91 85278 78265</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html#refunds">Terms &amp; Refund Policy</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Online Academic Help. All rights reserved.</span>
+      <span><a href="privacy-policy.html">Privacy</a> &nbsp;·&nbsp; <a href="terms-and-conditions.html">Terms</a></span>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  // Close the mobile menu after tapping a nav link
+  document.querySelectorAll('.nav-links a').forEach(function(link){
+    link.addEventListener('click', function(){
+      if(window.innerWidth <= 900){
+        document.querySelector('.nav-links').style.display = 'none';
+      }
+    });
+  });
+</script>
+</body>
+</html>
